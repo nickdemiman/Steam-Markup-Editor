@@ -1,0 +1,17 @@
+{
+  "name": "steam-markup-generator",
+  "version": "1.0.0",
+  "description": "A lightweight rich-text editor that enables you to format text using Steam's [custom markup tags](https://steamcommunity.com/comment/Recommendation/formattinghelp), providing a live preview of the formatted content.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.92.1",
+    "webpack-cli": "^5.1.4"
+  }
+}
