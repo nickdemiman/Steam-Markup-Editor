@@ -1,17 +1,31 @@
 {
-  "name": "steam-markup-generator",
+  "name": "steam-markup-editor",
   "version": "1.0.0",
-  "description": "A lightweight rich-text editor that enables you to format text using Steam's [custom markup tags](https://steamcommunity.com/comment/Recommendation/formattinghelp), providing a live preview of the formatted content.",
-  "main": "index.js",
+  "description": "Легковесный редактор разметки steam с визуализацией. Редактор поддерживает комбинации клавиш и много чего другого.",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "serve out",
+    "lint": "next lint"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "dependencies": {
+    "next": "14.2.4",
+    "react": "^18",
+    "react-dom": "^18"
+  },
   "devDependencies": {
-    "webpack": "^5.92.1",
-    "webpack-cli": "^5.1.4"
+    "@reduxjs/toolkit": "^2.2.6",
+    "@siberiacancode/reactuse": "^0.0.55",
+    "@svgr/webpack": "^8.1.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/react-redux": "^7.1.33",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.4",
+    "react-redux": "^9.1.2",
+    "sass": "^1.77.8",
+    "serve": "^14.2.4",
+    "typescript": "^5"
   }
 }

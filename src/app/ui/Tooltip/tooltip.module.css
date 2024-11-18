@@ -1,0 +1,28 @@
+.tooltip {
+    display: none;
+    position: absolute;
+    left: 105%;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 0.8em;
+    white-space: nowrap;
+    z-index: 1;
+    background-color: var(--gpBackground-DarkHard);
+    box-shadow: var(--gpShadow-Small);
+}
+
+.tooltip .tooltipText::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%; /* To the left of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+}
+
+:hover > .tooltip {
+    display: block;
+}

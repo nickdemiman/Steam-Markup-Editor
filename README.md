@@ -1,41 +1,56 @@
-# Steam Markup Generator
+# Steam Markup Editor (Редактор разметки Steam)  
+Легковесный редактор разметки steam с визуализацией. Редактор поддерживает комбинации клавиш и много чего другого.  
+На данный момент реализованы теги:  
+- Хедеры (Ctrl + 1,2,3)  
+- Жирный текст (Ctrl + B)  
+- Подчеркнутый (Ctrl + U)  
+- Курсив (Ctrl + I)  
+- Зачеркнутый (Ctrl + S)  
+- Спойлер  
+- Сырой текст (Noparse)  
+- Горизонтальный разделитель  
+- Формат кода  
 
-A lightweight rich-text editor that enables you to format text using Steam's [custom markup tags](https://steamcommunity.com/comment/Recommendation/formattinghelp), providing a live preview of the formatted content.
+Проектом давно не занимался и работы еще много. В плане, реализовать:  
+- Url, вставка ссылок
+- Маркированный списки
+- Нумерованные списки
+- Цитаты
+- Таблицы  
 
-## Features
+Также в процессе буду фиксить ошибки и баги, которые встречу
 
-- Basic text formatting options like **bold**, *italic*, underline, and strikethrough.
-- Headers, horizontal rules, and code blocks support.
-- Add quotations with authors and embed spoilers.
-- Keyboard shortcuts for quick formatting.
-  
-## Usage
+# Быстрый старт
+Проект можно опробовать следующим образом
 
-1. Type or paste the text you want to format into the editor.
-2. Use the buttons above the editor or keyboard shortcuts to apply formatting.
-3. See the live preview below the editor to check how your content looks.
+Клонируем репозиторий  
+```bash
+mkdir steam-markup-editor
+cd steam-markup-editor
+git clone https://github.com/NickDemiman/Steam-Markup-Editor.git .
+```
 
-## Keyboard Shortcuts
+## Сервер Next.js
+Устанавливаем зависимости
+```bash
+npm ci
+```
 
-- **Bold**: Ctrl + B
-- **Italic**: Ctrl + I
-- **Underline**: Ctrl + U
-- **Strike**: Ctrl + Shift + X
-- **Header**: Ctrl + Shift + H
-- **URL**: Ctrl + K
+Запускаем билд и сервим приложение
+```bash
+npm run build
+npm start
+```
 
-## Planned Features
-- [x] Local storage saving to prevent progress loss
-- [x] URL support
-- [ ] Add remaining buttons
-- [ ] More keybinds
-- [ ] Markdown to Steam Markup converter
+## Docker образ
+Для запуска, достаточно собрать и запустить  
+```bash
+docker build -t editor .
+docker run -it --rm -p 8000:8000 editor:latest
+```  
 
-## Feedback
-
-This is a beta version of the editor. If you encounter any issues or have suggestions for improvements, please [open an issue](https://github.com/bijx/Steam-Markup-Generator/issues).
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
- 
+Либо запулить образ и запустить
+```bash
+docker pull ghcr.io/nickdemiman/steam-markup-editor
+docker run -it --rm -p 8000:8000 ghcr.io/nickdemiman/steam-markup-editor
+```
