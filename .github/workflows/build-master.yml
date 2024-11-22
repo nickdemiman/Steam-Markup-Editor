@@ -1,10 +1,8 @@
-name: dev-build
+name: build-master
 
 on:
-    push:
-        branches: [dev]
     pull_request:
-        branches: [dev]
+        branches: [master]
         types:
             - closed
 env:
@@ -39,5 +37,4 @@ jobs:
               with:
                   context: .
                   push: true
-                  tags: ${{ steps.meta.outputs.tags }}
-                  labels: ${{ steps.meta.outputs.labels }}
+                  tags: "${{env.IMAGE_NAME}}:master"
