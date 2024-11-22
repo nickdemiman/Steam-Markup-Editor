@@ -47,4 +47,10 @@ npm start
 ```bash
 docker build -t editor .
 docker run -it --rm -p 8000:8000 editor:latest
+```  
+
+Либо запулить образ и запустить
+```bash
+docker pull ghcr.io/nickdemiman/steam-markup-editor
+docker run -it --rm -p 8000:8000 ghcr.io/nickdemiman/steam-markup-editor
 ```
