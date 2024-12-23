@@ -1,16 +1,16 @@
 FROM node:20.13.1-alpine AS build
 
-WORKDIR /root
-COPY . .
+WORKDIR /build
+COPY package.json package-lock.json ./
+RUN npm ci
 
-RUN <<EOF
-    npm ci
-    npm run build
-EOF
+
+COPY . .
+RUN npm run build
 
 FROM nginx:1.27.0-alpine AS final
 
-COPY --from=build /root/out/ /var/www/
+COPY --from=build /build/out/ /var/www/
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 8000

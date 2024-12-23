@@ -2,3 +2,4 @@
 .git
 out
 node_modules
+helm
