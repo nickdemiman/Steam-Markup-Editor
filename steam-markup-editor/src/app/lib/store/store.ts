@@ -1,5 +1,5 @@
 // import switchMode from './modeSlice'
-import contentReducer from './contentSlice';
+import contentSlice from './contentSlice';
 
 import {
     Action,
@@ -9,8 +9,8 @@ import {
     
 export const store = configureStore({
     reducer: {
-        // mode: switchMode,
-        content: contentReducer
+        content: contentSlice,
+        
     },
 });
     

@@ -78,6 +78,19 @@ export default function Toolbar () {
                 <FormatStrike />
             </Button>
 
+            <Button
+            tooltip={tooltipsEnabled ? "Ctrl + H" : undefined}
+            onClick={formatHRHandle}
+            >
+                <FormatHr />
+            </Button>
+
+            <Button 
+            tooltip={tooltipsEnabled ? "Ctrl + K" : undefined}
+            >
+                <FormatUrl />
+            </Button>
+
             <Button 
             tooltip={tooltipsEnabled ? "Spoiler" : undefined}
             onClick={formatSpoilerHandle}
@@ -92,24 +105,15 @@ export default function Toolbar () {
             </Button>
 
             <Button
-            onClick={formatHRHandle}
-            >
-                <FormatHr />
-            </Button>
-
-            <Button
             onClick={formatCodeHandle}
             >
                 <FormatCode />
             </Button>
 
-            {/* <Button>
+            <Button>
                 <FormatQuote />
-            </Button> */}
+            </Button>
 
-            {/* <Button tooltip={tooltipsEnabled ? "Ctrl + K" : undefined}>
-                <FormatUrl />
-            </Button> */}
 
         </div>
     )
