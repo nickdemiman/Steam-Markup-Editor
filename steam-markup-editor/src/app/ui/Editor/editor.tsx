@@ -3,11 +3,11 @@
 import style from "./editor.module.css";
 import { interFont } from "@/app/assets/fonts/fonts";
 import { useAppDispatch, useAppSelector } from "@/app/lib/store/hooks";
-import { KeyboardEvent, useEffect, useRef, useState } from "react";
+import { createContext, KeyboardEvent, useEffect, useRef, useState } from "react";
 import debouncer from "@/app/lib/debouncer";
 import useKeyPress from "@/app/lib/useKeyPress";
 import { update } from "@/app/lib/store/contentSlice";
-import { Help } from "@/app/ui/Help/help";
+import { Help, HelpMenuContext } from "@/app/ui/Help/help";
 import {
   formatBoldHandle,
   formatDuplicateDown,
@@ -21,7 +21,8 @@ import {
   formatUnderlineHandle,
 } from "./keyCombs";
 
-export default function Editor() {
+export function Editor() {
+  const [helpMenuVisible, setHelpMenuVisible] = useState(false);
   const textArea = useRef<HTMLTextAreaElement>(null);
   const content = useAppSelector((state) => state.content.content);
   const dispatch = useAppDispatch();
@@ -41,8 +42,14 @@ export default function Editor() {
     textArea.current.focus();
     textArea.current.value = content;
     window.textArea = textArea;
-  }, []);
 
+  }, [textArea]);
+
+  
+
+  function keyHandler(e: React.KeyboardEvent) {
+
+  }
   useKeyPress("1", formatH1Handle, { ctrl: true });
   useKeyPress("2", formatH2Handle, { ctrl: true });
   useKeyPress("3", formatH3Handle, { ctrl: true });
@@ -55,17 +62,19 @@ export default function Editor() {
   useKeyPress("ArrowDown", formatDuplicateDown, { shift: true, alt: true });
 
   return (
-    <div className={style.editor}>
-      <textarea
-        className={style.editorArea}
-        style={{
-          ...interFont.style,
-          color: `var(--gpSystemLightestGrey)`,
-        }}
-        onKeyUp={keyupEvent}
-        ref={textArea}
-      />
-      <Help />
-    </div>
+    <HelpMenuContext.Provider value={{visible: helpMenuVisible, setVisible: setHelpMenuVisible}}>
+      <div className={style.editor}>
+        <textarea
+          className={style.editorArea}
+          style={{
+            ...interFont.style,
+            color: `var(--gpSystemLightestGrey)`,
+          }}
+          onKeyUp={keyupEvent}
+          ref={textArea}
+        />
+        <Help />
+      </div>
+    </HelpMenuContext.Provider>
   );
 }

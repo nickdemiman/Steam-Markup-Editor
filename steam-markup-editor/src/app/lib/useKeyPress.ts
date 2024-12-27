@@ -32,8 +32,9 @@ export default function useKeyPress(
                 (options.ctrl === e.ctrlKey) &&
                 (options.shift === e.shiftKey)
             ) {
-              e.preventDefault();
-              action();
+                e.stopPropagation();
+                e.preventDefault();
+                action();
             }
         }
 
@@ -50,4 +51,43 @@ export default function useKeyPress(
 
         return () => target.removeEventListener('keydown', Handle, false);
     }, [action, _options, key]);
+}
+
+export function keyHandlerWrapper(
+    key: string, 
+    action: Function,
+    _options : Options = {},
+) : Function {
+    const options : Options = {...{
+        ctrl: false,
+        alt: false,
+        shift: false,
+        global: false
+    }, ..._options}
+
+    function Handle(e: KeyboardEvent) {
+        if (
+            (e.key.toLowerCase() === key.toLocaleLowerCase()) &&
+            (options.alt === e.altKey) &&
+            (options.ctrl === e.ctrlKey) &&
+            (options.shift === e.shiftKey)
+        ) {
+            e.stopPropagation();
+            e.preventDefault();
+            action();
+        }
+    }
+
+    let target: any;
+
+    if (options.global){
+        target = document;
+    }
+    else {
+        target = window.textArea.current;
+    }
+
+    target.addEventListener('keydown', Handle, false);
+
+    return () => target.removeEventListener('keydown', Handle, false);
 }
